@@ -1,4 +1,4 @@
-﻿{
+{
   "userSecretsId": "aspnet-MySqlDotnetCore-9891aba1-467e-4e65-82a3-4a778d08573a",
 
   "dependencies": {
@@ -43,7 +43,8 @@
     "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-preview2-final",
       "type": "build"
-    }
+    },
+    "MySql.Data.EntityFrameworkCore": "7.0.6-IR31"
   },
 
   "tools": {
