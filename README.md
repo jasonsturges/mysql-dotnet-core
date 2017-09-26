@@ -18,17 +18,17 @@ In the interim, I suggest using [Pomelo](https://www.nuget.org/packages/Pomelo.E
 
     $ dotnet add package Pomelo.EntityFrameworkCore.MySql --version 2.0.0-rtm-10062
 
-Or, add the following line to your .csproj `ItemGroup`
+Or, add the following line to your .csproj `ItemGroup`:
 
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.0.0-rtm-10062" />
 
-In your Startup.cs, get rid of these using statements
+In your Startup.cs, remove these using statements:
 
     // Remove these lines
     using MySQL.Data.EntityFrameworkCore;
     using MySQL.Data.EntityFrameworkCore.Extensions;
 
-And change the casing of `UseMySQL` to `UseMySql`
+Then, change the casing of `UseMySQL` to `UseMySql`:
 
 ```
 // This method gets called by the runtime. Use this method to add services to the container.
