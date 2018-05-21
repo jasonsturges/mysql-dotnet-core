@@ -42,8 +42,8 @@ Configure connection string in project's appsettings.json, replacing the `userna
 
 Add using statements to `Startup.cs` source code:
 
-    using MySQL.Data.EntityFrameworkCore;
-    using MySQL.Data.EntityFrameworkCore.Extensions;
+    using MySql.Data.EntityFrameworkCore;
+    using MySql.Data.EntityFrameworkCore.Extensions;
 
 Then in the same file's `ConfigureServices()` method, replace the `UseSqlite` option with MySQL:
 
