@@ -61,7 +61,7 @@ Upon upgrading MySQL Oracle Connector, entity framework migrations were failing 
 
 > MySql.Data.MySqlClient.MySqlException (0x80004005): Specified key was too long; max key length is 3072 bytes
 
-To resolve this, add the following code within the ApplicationDbContext.cs `OnModelingCreating()`.
+To resolve this, add the following code within the ApplicationDbContext.cs `OnModelCreating()`.
 
     using Microsoft.AspNetCore.Identity;
 
