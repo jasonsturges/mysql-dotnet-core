@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySqlDotnetCore", "MySqlDotnetCore\MySqlDotnetCore.csproj", "{1E441033-B9D6-47DE-9073-2F6782DD2682}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySqlDotnetCore", "MySqlDotnetCore\MySqlDotnetCore.csproj", "{1E441033-B9D6-47DE-9073-2F6782DD2682}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FD942558-5A6C-4E88-8C6F-38991C622EB5}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
