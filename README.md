@@ -8,39 +8,6 @@ This enables development of ASP.NET Core projects using [VS Code](https://code.v
 
 This repository uses ASP.NET Core 2.0 Visual Studio 2017 ASP.NET Core Web Application project scaffold updated to use MySQL.
 
-## Note about compatibility with .NET Core 2.0
-
-There is currently an issue with Oracle's MySQL connector and .NET Core 2.0.  You may receive an error stating:
-
-> System.TypeLoadException occurred HResult=0x80131522 Message=Method 'Clone' in type 
-
-In the interim, I suggest using [Pomelo](https://www.nuget.org/packages/Pomelo.EntityFrameworkCore.MySql/2.0.0-rtm-10062), which can be installed by executing the following command:
-
-    $ dotnet add package Pomelo.EntityFrameworkCore.MySql --version 2.0.0-rtm-10062
-
-Or, add the following line to your .csproj `ItemGroup`:
-
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.0.0-rtm-10062" />
-
-In your Startup.cs, remove these using statements:
-
-    // Remove these lines
-    using MySQL.Data.EntityFrameworkCore;
-    using MySQL.Data.EntityFrameworkCore.Extensions;
-
-Then, change the casing of `UseMySQL` to `UseMySql`:
-
-```
-// This method gets called by the runtime. Use this method to add services to the container.
-public void ConfigureServices(IServiceCollection services)
-{
-    // Add framework services.
-    services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
-```
-
-After that, you should have full MySQL Entity Framework functionality with .NET Core 2.
-
 
 ## Project Setup
 
