@@ -12,8 +12,8 @@ using MySqlDotnetCore.Data;
 using MySqlDotnetCore.Models;
 using MySqlDotnetCore.Services;
 
-using MySQL.Data.EntityFrameworkCore;
-using MySQL.Data.EntityFrameworkCore.Extensions;
+using MySql.Data.EntityFrameworkCore;
+using MySql.Data.EntityFrameworkCore.Extensions;
 
 namespace MySqlDotnetCore
 {
