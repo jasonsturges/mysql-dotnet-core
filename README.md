@@ -22,11 +22,11 @@ Install the `MySql.Data.EntityFrameworkCore` NuGet package in the ASP.NET web ap
 
 To do this, you can use the `dotnet` command line by executing:
 
-    $ dotnet add package MySql.Data.EntityFrameworkCore --version 8.0.8-dmr
+    $ dotnet add package MySql.Data.EntityFrameworkCore --version 8.0.11
 
 Or, edit the project's .csproj file and add the following line in the `PackageReference` item group:
 
-    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.8-dmr" />
+    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.11" />
 
 
 ### Update appsettings.json
