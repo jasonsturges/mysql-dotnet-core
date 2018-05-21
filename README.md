@@ -55,6 +55,51 @@ Then in the same file's `ConfigureServices()` method, replace the `UseSqlite` op
                 options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
 
 
+### Migration Issues with DbContext
+
+Upon upgrading MySQL Oracle Connector, entity framework migrations were failing with the error:
+
+> MySql.Data.MySqlClient.MySqlException (0x80004005): Specified key was too long; max key length is 3072 bytes
+
+To resolve this, add the following code within the ApplicationDbContext.cs `OnModelingCreating()`.
+
+    using Microsoft.AspNetCore.Identity;
+
+    // ...
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            // ...
+
+            // Shorten key length for Identity
+            builder.Entity<ApplicationUser>(entity => entity.Property(m => m.Id).HasMaxLength(127));
+            builder.Entity<IdentityRole>(entity => entity.Property(m => m.Id).HasMaxLength(127));
+            builder.Entity<IdentityUserLogin<string>>(entity =>
+            {
+                entity.Property(m => m.LoginProvider).HasMaxLength(127);
+                entity.Property(m => m.ProviderKey).HasMaxLength(127);
+            });
+            builder.Entity<IdentityUserRole<string>>(entity =>
+            {
+                entity.Property(m => m.UserId).HasMaxLength(127);
+                entity.Property(m => m.RoleId).HasMaxLength(127);
+            });
+            builder.Entity<IdentityUserToken<string>>(entity =>
+            {
+                entity.Property(m => m.UserId).HasMaxLength(127);
+                entity.Property(m => m.LoginProvider).HasMaxLength(127);
+                entity.Property(m => m.Name).HasMaxLength(127);
+            });
+
+Then, generate a new migration using Visual Studio Package Manager Console (from menu: Tools -> NuGet Package Manager -> Package Manager Console):
+
+    >> Add-Migration
+
+Or, from the command line via DotNet CLI:
+
+    $ dotnet ef migrations add Initial
+
+
 ## Running the solution
 
 Before the solution can be executed, be sure to run entity framework migrations.
@@ -74,7 +119,11 @@ Running the `dotnet ef` fails initially as the `__efmigrationshistory` table doe
 
 ### Run Entity Framework Migrations
 
-Execute the following comment inside the project directory, where the `project.json` file is located:
+Execute the migration using either Visual Studio Package Manager Console (from menu: Tools -> NuGet Package Manager -> Package Manager Console):
+
+    >> Update-Database
+
+Or, from the command line via DotNet CLI, execute the following command inside the project directory, where the `project.json` file is located:
 
     $ dotnet ef database update
 
