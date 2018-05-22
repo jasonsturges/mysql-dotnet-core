@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MySqlDotnetCore.Models.ManageViewModels
 {
-    public class GenerateRecoveryCodesViewModel
+    public class ShowRecoveryCodesViewModel
     {
         public string[] RecoveryCodes { get; set; }
     }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace MySqlDotnetCore.Migrations
 {
-    public partial class Initial : Migration
+    public partial class CreateIdentitySchema : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
