@@ -10,8 +10,8 @@ using System;
 namespace MySqlDotnetCore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180521210102_Initial")]
-    partial class Initial
+    [Migration("20180522194944_CreateIdentitySchema")]
+    partial class CreateIdentitySchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
