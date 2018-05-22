@@ -123,7 +123,7 @@ Execute the migration using either Visual Studio Package Manager Console (from m
 
     >> Update-Database
 
-Or, from the command line via DotNet CLI, execute the following command inside the project directory, where the `project.json` file is located:
+Or, from the command line via DotNet CLI, execute the following command inside the project directory, **where the .csproj file is located**:
 
     $ dotnet ef database update
 
