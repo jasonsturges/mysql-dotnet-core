@@ -1,4 +1,4 @@
-# MySQL ASP.NET Core 2.0
+# MySQL ASP.NET Core 2.1
 
 Convert an ASP.NET Core Web Application project to use MySQL with Entity Framework.
 
@@ -6,7 +6,7 @@ This enables development of ASP.NET Core projects using [VS Code](https://code.v
 
 ![vscode](http://labs.jasonsturges.com/coreclr/mysql-dotnet-core.png)
 
-This repository uses ASP.NET Core 2.0 Visual Studio 2017 ASP.NET Core Web Application project scaffold updated to use MySQL.
+This repository uses ASP.NET Core 2.1 Visual Studio 2017 ASP.NET Core Web Application project scaffold updated to use MySQL.
 
 
 ## Project Setup
