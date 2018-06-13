@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <UserSecretsId>aspnet-MySqlDotnetCore-7C8089F6-B789-42EC-BE69-C836C26A74E6</UserSecretsId>
   </PropertyGroup>
 
