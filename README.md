@@ -6,7 +6,7 @@ This enables development of ASP.NET Core projects using [VS Code](https://code.v
 
 ![vscode](http://labs.jasonsturges.com/coreclr/mysql-dotnet-core.png)
 
-This repository uses .NET Core 2.1 target framework, ASP.NET Core Web Application project scaffold from Visual Studio 2017 (version 15.7.3).
+This project uses .NET Core 2.1 target framework, ASP.NET Core Web Application project scaffold from Visual Studio 2017 (version 15.7.3).
 
 
 ## Project Setup
