@@ -1,6 +1,6 @@
 # MySQL ASP.NET Core 2.1
 
-**Note regarding ASP.NET Core 3.1** - an update is in progress for this repo under the dotnet-core-3.1 branch; however, is blocked by a pending MySQL update requiring MySQL Connector version 8.0.20.
+**Note regarding ASP.NET Core 3.1** - an update is in progress for this repo under the [dotnet-core-3.1 branch](https://github.com/jasonsturges/mysql-dotnet-core/tree/dotnet-core-3.1); however, is blocked by a pending MySQL update requiring MySQL Connector version 8.0.20.
 
 
 Convert an ASP.NET Core Web Application project to use MySQL with Entity Framework.
