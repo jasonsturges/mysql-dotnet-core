@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\JasonSturges\\source\\repos\\t\\MySqlDotnetCore\\MySqlDotnetCore\\MySqlDotnetCore.csproj": {}
+    "C:\\Users\\JasonSturges\\source\\repos\\mysql-dotnet-core\\MySqlDotnetCore\\MySqlDotnetCore.csproj": {}
   },
   "projects": {
-    "C:\\Users\\JasonSturges\\source\\repos\\t\\MySqlDotnetCore\\MySqlDotnetCore\\MySqlDotnetCore.csproj": {
+    "C:\\Users\\JasonSturges\\source\\repos\\mysql-dotnet-core\\MySqlDotnetCore\\MySqlDotnetCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\JasonSturges\\source\\repos\\t\\MySqlDotnetCore\\MySqlDotnetCore\\MySqlDotnetCore.csproj",
+        "projectUniqueName": "C:\\Users\\JasonSturges\\source\\repos\\mysql-dotnet-core\\MySqlDotnetCore\\MySqlDotnetCore.csproj",
         "projectName": "MySqlDotnetCore",
-        "projectPath": "C:\\Users\\JasonSturges\\source\\repos\\t\\MySqlDotnetCore\\MySqlDotnetCore\\MySqlDotnetCore.csproj",
+        "projectPath": "C:\\Users\\JasonSturges\\source\\repos\\mysql-dotnet-core\\MySqlDotnetCore\\MySqlDotnetCore.csproj",
         "packagesPath": "C:\\Users\\JasonSturges\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\JasonSturges\\source\\repos\\t\\MySqlDotnetCore\\MySqlDotnetCore\\obj\\",
+        "outputPath": "C:\\Users\\JasonSturges\\source\\repos\\mysql-dotnet-core\\MySqlDotnetCore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\JasonSturges\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -61,6 +61,10 @@
             "Microsoft.EntityFrameworkCore.Tools": {
               "target": "Package",
               "version": "[3.1.5, )"
+            },
+            "MySql.Data.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.20, )"
             }
           },
           "imports": [
