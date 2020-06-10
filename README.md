@@ -1,7 +1,4 @@
-# MySQL ASP.NET Core 2.1
-
-**Note regarding ASP.NET Core 3.1** - an update is in progress for this repo under the [dotnet-core-3.1 branch](https://github.com/jasonsturges/mysql-dotnet-core/tree/dotnet-core-3.1); however, is blocked by a pending MySQL update requiring MySQL Connector version 8.0.20.
-
+# MySQL ASP.NET Core 3.1
 
 Convert an ASP.NET Core Web Application project to use MySQL with Entity Framework.
 
@@ -9,7 +6,7 @@ This enables development of ASP.NET Core projects using [VS Code](https://code.v
 
 ![vscode](http://labs.jasonsturges.com/coreclr/mysql-dotnet-core.png)
 
-This project uses .NET Core 2.1 target framework, ASP.NET Core Web Application project scaffold from Visual Studio 2017 (version 15.7.3).
+This project uses .NET Core 3.1 target framework, ASP.NET Core Web Application project scaffold from Visual Studio 2019 (version 15.7.3).
 
 
 ## Project Setup
@@ -25,11 +22,11 @@ Install the `MySql.Data.EntityFrameworkCore` NuGet package in the ASP.NET web ap
 
 To do this, you can use the `dotnet` command line by executing:
 
-    $ dotnet add package MySql.Data.EntityFrameworkCore --version 8.0.11
+    $ dotnet add package MySql.Data.EntityFrameworkCore --version 8.0.20
 
 Or, edit the project's .csproj file and add the following line in the `PackageReference` item group:
 
-    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.11" />
+    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.20" />
 
 
 ### Update appsettings.json
@@ -43,12 +40,7 @@ Configure connection string in project's appsettings.json, replacing the `userna
 
 ### Modify Startup.cs
 
-Add using statements to `Startup.cs` source code:
-
-    using MySql.Data.EntityFrameworkCore;
-    using MySql.Data.EntityFrameworkCore.Extensions;
-
-Then in the same file's `ConfigureServices()` method, replace the `UseSqlite` option with MySQL:
+In `Startup.cs` under `ConfigureServices()` method, replace the `UseSqlite` option with MySQL:
 
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
@@ -67,32 +59,40 @@ Upon upgrading MySQL Oracle Connector, entity framework migrations were failing 
 To resolve this, add the following code within the ApplicationDbContext.cs `OnModelCreating()`.
 
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore;
 
-    // ...
+    public class ApplicationDbContext : IdentityDbContext
+    {
+    
+        // ...
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            // ...
+            base.OnModelCreating(builder);
 
-            // Shorten key length for Identity
-            builder.Entity<ApplicationUser>(entity => entity.Property(m => m.Id).HasMaxLength(127));
             builder.Entity<IdentityRole>(entity => entity.Property(m => m.Id).HasMaxLength(127));
+            builder.Entity<IdentityRole>(entity => entity.Property(m => m.ConcurrencyStamp).HasColumnType("varchar(256)"));
+
             builder.Entity<IdentityUserLogin<string>>(entity =>
             {
                 entity.Property(m => m.LoginProvider).HasMaxLength(127);
                 entity.Property(m => m.ProviderKey).HasMaxLength(127);
             });
+
             builder.Entity<IdentityUserRole<string>>(entity =>
             {
                 entity.Property(m => m.UserId).HasMaxLength(127);
                 entity.Property(m => m.RoleId).HasMaxLength(127);
             });
+
             builder.Entity<IdentityUserToken<string>>(entity =>
             {
                 entity.Property(m => m.UserId).HasMaxLength(127);
                 entity.Property(m => m.LoginProvider).HasMaxLength(127);
                 entity.Property(m => m.Name).HasMaxLength(127);
             });
+        }
 
 Then, generate a new migration using Visual Studio Package Manager Console (from menu: Tools -> NuGet Package Manager -> Package Manager Console):
 
