@@ -2,16 +2,30 @@
 
 Convert an ASP.NET Core Web Application project to use MySQL with Entity Framework.
 
-This enables development of ASP.NET Core projects using [VS Code](https://code.visualstudio.com/) on Mac OS X / macOS or linux targets.
-
-![vscode](http://labs.jasonsturges.com/coreclr/mysql-dotnet-core.png)
+This enables development of ASP.NET Core projects using [VS Code](https://code.visualstudio.com/) on macOS or linux targets.
 
 This project uses .NET Core 3.1 target framework, ASP.NET Core Web Application project scaffold from Visual Studio 2019 (version 16.6.2).
 
+![vscode](http://labs.jasonsturges.com/coreclr/mysql-dotnet-core.png)
 
+Project setup has already been completed in this repository - assure [environment setup](#environment-setup); then, jump to [Running the solution](#running-the-solution).
+
+
+## Environment Setup
+
+This project requires PostgreSQL - installation instructions are provided below.
+
+If using Visual Studio Code, you will need to generate ASP.NET Core developer certificates by issuing the following commands from a terminal:
+
+    dotnet dev-certs https --clean
+    dotnet dev-certs https
+
+For command line `database ef` commands, you will need to install Entity Framework Core tools .NET CLI:
+
+    dotnet tool install --global dotnet-ef
+    
+    
 ## Project Setup
-
-Project setup has already been completed in this repository.
 
 Below, instructions are referenced to use MySQL in a ASP.NET Core project.
 
