@@ -52,9 +52,10 @@ In `Startup.cs` under `ConfigureServices()` method, replace the `UseSqlite` opti
 
 ### Migration Issues with DbContext
 
-Upon upgrading MySQL Oracle Connector, entity framework migrations were failing with the error:
+Upon upgrading MySQL Oracle Connector, entity framework migrations were failing with the errors:
 
 > MySql.Data.MySqlClient.MySqlException (0x80004005): Specified key was too long; max key length is 3072 bytes
+> MySql.Data.MySqlClient.MySqlException (0x80004005): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'max) NULL, PRIMARY KEY (`Id`))
 
 To resolve this, add the following code within the ApplicationDbContext.cs `OnModelCreating()`.
 
