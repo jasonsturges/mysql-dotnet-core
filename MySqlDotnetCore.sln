@@ -1,14 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.10
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FD942558-5A6C-4E88-8C6F-38991C622EB5}"
-	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
-	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySqlDotnetCore", "MySqlDotnetCore\MySqlDotnetCore.csproj", "{8F149993-56B7-469F-90BB-1A6729ED5314}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySqlDotnetCore", "MySqlDotnetCore\MySqlDotnetCore.csproj", "{FB6BF1A0-4BA1-4F62-9944-79F95F092438}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8F149993-56B7-469F-90BB-1A6729ED5314}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8F149993-56B7-469F-90BB-1A6729ED5314}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8F149993-56B7-469F-90BB-1A6729ED5314}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8F149993-56B7-469F-90BB-1A6729ED5314}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB6BF1A0-4BA1-4F62-9944-79F95F092438}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB6BF1A0-4BA1-4F62-9944-79F95F092438}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB6BF1A0-4BA1-4F62-9944-79F95F092438}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB6BF1A0-4BA1-4F62-9944-79F95F092438}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C6BEA37F-785C-42A5-85B9-EE1C8B142A0D}
+		SolutionGuid = {7F09C5F8-3663-456E-9316-FF9B2867CA97}
 	EndGlobalSection
 EndGlobal
