@@ -125,7 +125,9 @@ Before the solution can be executed, be sure to run entity framework migrations.
 
 ### Create Entity Framework Migration Table in MySQL
 
-Running the `dotnet ef` fails initially as the `__efmigrationshistory` table doesn't exist.  Until this is resolved by the Entity Framework migration tools, manually create the migrations history table in the MySQL database by executing the following SQL script.
+Running the `dotnet ef` fails initially as the `__efmigrationshistory` table doesn't exist.  Until this is resolved by the Entity Framework migration tools, manually create the migrations history table in the MySQL database by executing the following SQL script. 
+
+As of 3.1.9, the issue has been resolved. do this if you are using an earlier version.
 
     use mydatabase;
 
