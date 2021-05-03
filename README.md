@@ -13,8 +13,6 @@ Project setup has already been completed in this repository - assure [environmen
 
 ## Environment Setup
 
-This project requires PostgreSQL - installation instructions are provided below.
-
 If using Visual Studio Code, you will need to generate ASP.NET Core developer certificates by issuing the following commands from a terminal:
 
     dotnet dev-certs https --clean
