@@ -3,8 +3,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:51997",
-      "sslPort": 44332
+      "applicationUrl": "http://localhost:65309",
+      "sslPort": 44398
     }
   },
   "profiles": {
@@ -18,6 +18,7 @@
     },
     "MySqlDotnetCore": {
       "commandName": "Project",
+      "dotnetRunMessages": "true",
       "launchBrowser": true,
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
