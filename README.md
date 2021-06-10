@@ -6,7 +6,12 @@ This project uses [.NET 5.0](https://dotnet.microsoft.com/download/dotnet/5.0) t
 
 ![vscode](https://user-images.githubusercontent.com/1213591/106405974-812cba80-63fd-11eb-9c22-3f8eeff9136f.png)
 
-Project setup has already been completed in this repository - assure [environment setup](#environment-setup); then, jump to [running the solution](#running-the-solution).
+For previous versions of .NET Core 3.x, 2.x, 1.x, see the [releases](https://github.com/jasonsturges/mysql-dotnet-core/releases) for past implementations in this repository.
+
+
+## Quick Start
+
+To immediately use this solution, make sure your [environment setup](#environment-setup) is complete; then, jump to [running the solution](#running-the-solution).
 
 
 ## Environment Setup
@@ -22,41 +27,64 @@ For command line `database ef` commands, you will need to install Entity Framewo
 
     dotnet tool install --global dotnet-ef
     
-Make sure you have [MySQL 8.0 Server](https://dev.mysql.com/downloads/) instsalled on your system; or, use a Docker image instead of installing MySQL Server on your local computer.  In a shell, execute the following to spin up a Docker image of MySQL:
+Make sure you have [MySQL 8.0 Server](https://dev.mysql.com/downloads/) installed on your system; or, use a [Docker image](https://hub.docker.com/_/mysql) instead of installing MySQL Server.  In a terminal, execute the following to spin up a Docker image of MySQL:
 
     docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=mypassword -d mysql
 
-    
-## Project Setup
 
-Below, instructions are referenced to use MySQL in a ASP.NET Core project.
+## Running the solution
 
-
-### Install NuGet packages
-
-Install the `MySql.Data.EntityFrameworkCore` NuGet package in the ASP.NET web application.
-
-To do this, you can use the `dotnet` command line by executing:
-
-    $ dotnet add package MySql.Data.EntityFrameworkCore --version 8.0.20
-
-Or, edit the project's .csproj file and add the following line in the `PackageReference` item group:
-
-    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.20" />
-
-
-### Update appsettings.json
+Before the solution can be executed, Entity Framework migrations must be run to setup the database.
 
 Configure connection string in project's appsettings.json, replacing the `username`, `password`, and `database` appropriately:
 
-    "ConnectionStrings":{
-        "DefaultConnection":"server=localhost;userid=myusername;password=mypassword;database=mydatabase;"
-    },
+```cs
+"ConnectionStrings": {
+  "DefaultConnection":"server=localhost;userid=myusername;password=mypassword;database=mydatabase;"
+},
+```
 
+Execute the migration using either Visual Studio Package Manager Console (from menu: Tools -> NuGet Package Manager -> Package Manager Console):
+
+    >> Update-Database
+
+Or, from the command line via DotNet CLI, execute the following command inside the project directory, **where the .csproj file is located**:
+
+    $ dotnet ef database update
+
+After running the migration, the database is created and web application is ready to be run.
+
+Run the solution via your IDE; or, execute the following command line
+
+    dotnet run
+
+Then, load via browser to either https or http endpoints:
+
+- https://localhost:5001
+- http://localhost:5000
+
+
+## Project Setup
+
+Project setup has already been completed in this repository, ready for use as a template for your next project.
+
+Otherwise, adapt the steps below to incorporate MySQL into your solution.
+
+### Install NuGet packages
+
+Install the `MySql.EntityFrameworkCore` NuGet package in the ASP.NET web application.
+
+To do this, you can use the `dotnet` command line by executing:
+
+    dotnet add package MySql.EntityFrameworkCore --version 5.0.3.1
+
+Or, edit the project's .csproj file and add the following line in the `PackageReference` item group:
+
+    <PackageReference Include="MySql.EntityFrameworkCore" Version="5.0.3.1" />
 
 ### Modify Startup.cs
 
-In `Startup.cs` under `ConfigureServices()` method, replace the `UseSqlServer` option with MySQL:
+In `Startup.cs` under `ConfigureServices()` method, replace the `UseSqlServer` / `UseSqlite` option with MySQL:
 
 ```cs
 // This method gets called by the runtime. Use this method to add services to the container.
@@ -69,10 +97,34 @@ public void ConfigureServices(IServiceCollection services)
 
 ### Migration Issues with DbContext
 
-Upon upgrading MySQL Oracle Connector, entity framework migrations were failing with the errors:
+Upon upgrading MySQL Oracle Connector, Entity Framework migrations may fail with the errors:
 
 > MySql.Data.MySqlClient.MySqlException (0x80004005): Specified key was too long; max key length is 3072 bytes
+> 
 > MySql.Data.MySqlClient.MySqlException (0x80004005): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'max) NULL, PRIMARY KEY (`Id`))
+> 
+> Failed executing DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+> ```sql
+> CREATE TABLE `AspNetRoles` (
+>     `Id` TEXT NOT NULL,
+>     `Name` TEXT NULL,
+>     `NormalizedName` TEXT NULL,
+>     `ConcurrencyStamp` TEXT NULL,
+>     PRIMARY KEY (`Id`)
+> );
+> ```
+> MySql.Data.MySqlClient.MySqlException (0x80004005): BLOB/TEXT column 'Id' used in key specification without a key length
+> ```sql
+> CREATE TABLE `AspNetRoles` (
+>     `Id` nvarchar(450) NOT NULL,
+>     `Name` nvarchar(256) NULL,
+>     `NormalizedName` nvarchar(256) NULL,
+>     `ConcurrencyStamp` nvarchar(max) NULL,
+>     PRIMARY KEY (`Id`)
+> );
+> ```
+> MySql.Data.MySqlClient.MySqlException (0x80004005): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'max) NULL,
+
 
 To resolve this, add the following code within the ApplicationDbContext.cs `OnModelCreating()`.
 
@@ -90,7 +142,7 @@ public class ApplicationDbContext : IdentityDbContext
     {
         base.OnModelCreating(builder);
 
-        builder.Entity<IdentityRole>(entity => entity.Property(m => m.Id).HasMaxLength(127));
+        builder.Entity<IdentityRole>(entity => entity.Property(m => m.Id).HasMaxLength(450));
         builder.Entity<IdentityRole>(entity => entity.Property(m => m.ConcurrencyStamp).HasColumnType("varchar(256)"));
 
         builder.Entity<IdentityUserLogin<string>>(entity =>
@@ -123,32 +175,27 @@ Or, from the command line via DotNet CLI:
     $ dotnet ef migrations add Initial
 
 
-## Running the solution
-
-Before the solution can be executed, be sure to run entity framework migrations.
-
+## Troubleshooting
 
 ### Create Entity Framework Migration Table in MySQL
 
-Running the `dotnet ef` fails initially as the `__efmigrationshistory` table doesn't exist.  Until this is resolved by the Entity Framework migration tools, manually create the migrations history table in the MySQL database by executing the following SQL script.
+If running `dotnet ef` fails initially, the `__efmigrationshistory` table may not exist.  Past versions of Entity Framework migration tools failed to create this table.  
+
+Assure you're running the lastest tools:
+
+    dotnet tool update --global dotnet-ef
+
+Otherwise, manually create the migrations history table in the MySQL database by executing the following SQL script.
 
 ```sql
-    use mydatabase;
+use mydatabase;
 
-    CREATE TABLE `mydatabase`.`__EFMigrationsHistory` (
-      `MigrationId` text NOT NULL,
-      `ProductVersion` text NOT NULL,
-      PRIMARY KEY (`MigrationId`(255)));
+CREATE TABLE `mydatabase`.`__EFMigrationsHistory` (
+  `MigrationId` text NOT NULL,
+  `ProductVersion` text NOT NULL,
+  PRIMARY KEY (`MigrationId`(255)));
 ```
 
-### Run Entity Framework Migrations
+### Deprecated MySQL NuGet Packages
 
-Execute the migration using either Visual Studio Package Manager Console (from menu: Tools -> NuGet Package Manager -> Package Manager Console):
-
-    >> Update-Database
-
-Or, from the command line via DotNet CLI, execute the following command inside the project directory, **where the .csproj file is located**:
-
-    $ dotnet ef database update
-
-After running the migration, the database is created and web application is ready to be run.
+Note that `MySql.Data.EntityFrameworkCore` NuGet package is deprecated, and is now: `MySql.EntityFrameworkCore`.
