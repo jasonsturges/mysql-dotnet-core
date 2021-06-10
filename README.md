@@ -1,10 +1,8 @@
-# MySQL ASP.NET Core 3.1
+# MySQL ASP.NET 5.0
 
-Convert an ASP.NET Core Web Application project to use MySQL with Entity Framework.
+Convert an ASP.NET Core Web Application project to use MySQL with Entity Framework, enabling development on macOS, linux, or Windows targets.
 
-This enables development of ASP.NET Core projects using [VS Code](https://code.visualstudio.com/) on macOS or linux targets.
-
-This project uses .NET Core 3.1 target framework, ASP.NET Core Web Application project scaffold from Visual Studio 2019 (version 16.6.2).
+This project uses .NET 5.0 target framework, ASP.NET Core Web Application (Model-View-Controller) project scaffold from Visual Studio 2019 (version 16.10.1).
 
 ![vscode](https://user-images.githubusercontent.com/1213591/106405974-812cba80-63fd-11eb-9c22-3f8eeff9136f.png)
 
@@ -52,15 +50,16 @@ Configure connection string in project's appsettings.json, replacing the `userna
 
 ### Modify Startup.cs
 
-In `Startup.cs` under `ConfigureServices()` method, replace the `UseSqlite` option with MySQL:
+In `Startup.cs` under `ConfigureServices()` method, replace the `UseSqlServer` option with MySQL:
 
-    // This method gets called by the runtime. Use this method to add services to the container.
-    public void ConfigureServices(IServiceCollection services)
-    {
-        // Add framework services.
-        services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
-
+```cs
+// This method gets called by the runtime. Use this method to add services to the container.
+public void ConfigureServices(IServiceCollection services)
+{
+    // Add framework services.
+    services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+```
 
 ### Migration Issues with DbContext
 
@@ -71,41 +70,43 @@ Upon upgrading MySQL Oracle Connector, entity framework migrations were failing 
 
 To resolve this, add the following code within the ApplicationDbContext.cs `OnModelCreating()`.
 
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore;
+```cs
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
-    public class ApplicationDbContext : IdentityDbContext
+public class ApplicationDbContext : IdentityDbContext
+{
+
+    // ...
+
+    protected override void OnModelCreating(ModelBuilder builder)
     {
-    
-        // ...
+        base.OnModelCreating(builder);
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        builder.Entity<IdentityRole>(entity => entity.Property(m => m.Id).HasMaxLength(127));
+        builder.Entity<IdentityRole>(entity => entity.Property(m => m.ConcurrencyStamp).HasColumnType("varchar(256)"));
+
+        builder.Entity<IdentityUserLogin<string>>(entity =>
         {
-            base.OnModelCreating(builder);
+            entity.Property(m => m.LoginProvider).HasMaxLength(127);
+            entity.Property(m => m.ProviderKey).HasMaxLength(127);
+        });
 
-            builder.Entity<IdentityRole>(entity => entity.Property(m => m.Id).HasMaxLength(127));
-            builder.Entity<IdentityRole>(entity => entity.Property(m => m.ConcurrencyStamp).HasColumnType("varchar(256)"));
+        builder.Entity<IdentityUserRole<string>>(entity =>
+        {
+            entity.Property(m => m.UserId).HasMaxLength(127);
+            entity.Property(m => m.RoleId).HasMaxLength(127);
+        });
 
-            builder.Entity<IdentityUserLogin<string>>(entity =>
-            {
-                entity.Property(m => m.LoginProvider).HasMaxLength(127);
-                entity.Property(m => m.ProviderKey).HasMaxLength(127);
-            });
-
-            builder.Entity<IdentityUserRole<string>>(entity =>
-            {
-                entity.Property(m => m.UserId).HasMaxLength(127);
-                entity.Property(m => m.RoleId).HasMaxLength(127);
-            });
-
-            builder.Entity<IdentityUserToken<string>>(entity =>
-            {
-                entity.Property(m => m.UserId).HasMaxLength(127);
-                entity.Property(m => m.LoginProvider).HasMaxLength(127);
-                entity.Property(m => m.Name).HasMaxLength(127);
-            });
-        }
+        builder.Entity<IdentityUserToken<string>>(entity =>
+        {
+            entity.Property(m => m.UserId).HasMaxLength(127);
+            entity.Property(m => m.LoginProvider).HasMaxLength(127);
+            entity.Property(m => m.Name).HasMaxLength(127);
+        });
+    }
+```
 
 Then, generate a new migration using Visual Studio Package Manager Console (from menu: Tools -> NuGet Package Manager -> Package Manager Console):
 
@@ -125,13 +126,14 @@ Before the solution can be executed, be sure to run entity framework migrations.
 
 Running the `dotnet ef` fails initially as the `__efmigrationshistory` table doesn't exist.  Until this is resolved by the Entity Framework migration tools, manually create the migrations history table in the MySQL database by executing the following SQL script.
 
+```sql
     use mydatabase;
 
     CREATE TABLE `mydatabase`.`__EFMigrationsHistory` (
       `MigrationId` text NOT NULL,
       `ProductVersion` text NOT NULL,
       PRIMARY KEY (`MigrationId`(255)));
-
+```
 
 ### Run Entity Framework Migrations
 
