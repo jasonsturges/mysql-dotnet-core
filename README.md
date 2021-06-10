@@ -92,7 +92,7 @@ public void ConfigureServices(IServiceCollection services)
 {
     // Add framework services.
     services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+        options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
 ```
 
 ### Migration Issues with DbContext
