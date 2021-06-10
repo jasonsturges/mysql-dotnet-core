@@ -1,8 +1,8 @@
 # MySQL ASP.NET 5.0
 
-Convert an ASP.NET Core Web Application project to use MySQL with Entity Framework, enabling development on macOS, linux, or Windows targets.
+Convert an [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-5.0) Web Application project to use [MySQL](https://www.mysql.com/) with [Entity Framework](https://docs.microsoft.com/en-us/ef/), enabling development on macOS, linux, or Windows targets using IDEs such as [VS Code](https://code.visualstudio.com/), [Visual Studio](https://visualstudio.microsoft.com/), or [JetBrains Rider](https://www.jetbrains.com/rider/).
 
-This project uses .NET 5.0 target framework, ASP.NET Core Web Application (Model-View-Controller) project scaffold from Visual Studio 2019 (version 16.10.1).
+This project uses [.NET 5.0](https://dotnet.microsoft.com/download/dotnet/5.0) target framework, ASP.NET Core Web Application (Model-View-Controller) project scaffold from Visual Studio 2019 (version 16.10.1).
 
 ![vscode](https://user-images.githubusercontent.com/1213591/106405974-812cba80-63fd-11eb-9c22-3f8eeff9136f.png)
 
