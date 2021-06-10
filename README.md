@@ -2,7 +2,7 @@
 
 Convert an [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-5.0) Web Application project to use [MySQL](https://www.mysql.com/) with [Entity Framework](https://docs.microsoft.com/en-us/ef/), enabling development on macOS, linux, or Windows targets using IDEs such as [VS Code](https://code.visualstudio.com/), [Visual Studio](https://visualstudio.microsoft.com/), or [JetBrains Rider](https://www.jetbrains.com/rider/).
 
-This project uses [.NET 5.0](https://dotnet.microsoft.com/download/dotnet/5.0) target framework, ASP.NET Core Web Application (Model-View-Controller) project scaffold from Visual Studio 2019 (version 16.10.1).
+This project uses [.NET 5.0](https://dotnet.microsoft.com/download/dotnet/5.0) target framework, ASP.NET Core Web Application (Model-View-Controller) project scaffold from Visual Studio 2019 (version 16.10.1) to connect to MySQL 8.0.
 
 ![vscode](https://user-images.githubusercontent.com/1213591/106405974-812cba80-63fd-11eb-9c22-3f8eeff9136f.png)
 
@@ -11,7 +11,9 @@ Project setup has already been completed in this repository - assure [environmen
 
 ## Environment Setup
 
-If using Visual Studio Code, you will need to generate ASP.NET Core developer certificates by issuing the following commands from a terminal:
+Make sure you have the [.NET 5.0 SDK](https://dotnet.microsoft.com/download) installed on your system.
+
+If you're using Visual Studio Code, you will need to generate ASP.NET Core developer certificates by issuing the following commands from a terminal:
 
     dotnet dev-certs https --clean
     dotnet dev-certs https
@@ -20,6 +22,10 @@ For command line `database ef` commands, you will need to install Entity Framewo
 
     dotnet tool install --global dotnet-ef
     
+Make sure you have [MySQL 8.0 Server](https://dev.mysql.com/downloads/) instsalled on your system; or, use a Docker image instead of installing MySQL Server on your local computer.  In a shell, execute the following to spin up a Docker image of MySQL:
+
+    docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=mypassword -d mysql
+
     
 ## Project Setup
 
