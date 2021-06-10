@@ -172,8 +172,8 @@ Then, generate a new migration using Visual Studio Package Manager Console (from
 
 Or, from the command line via DotNet CLI:
 
-    $ dotnet ef migrations add Initial
-
+    $ dotnet ef migrations add CreateIdentitySchema
+    
 
 ## Troubleshooting
 
