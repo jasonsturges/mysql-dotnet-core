@@ -7003,24 +7003,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\JasonSturges\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\rishi\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\JasonSturges\\source\\repos\\mysql-dotnet-core\\MySqlDotnetCore\\MySqlDotnetCore.csproj",
+      "projectUniqueName": "C:\\Projects\\mysql-dotnet-core\\MySqlDotnetCore\\MySqlDotnetCore.csproj",
       "projectName": "MySqlDotnetCore",
-      "projectPath": "C:\\Users\\JasonSturges\\source\\repos\\mysql-dotnet-core\\MySqlDotnetCore\\MySqlDotnetCore.csproj",
-      "packagesPath": "C:\\Users\\JasonSturges\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\JasonSturges\\source\\repos\\mysql-dotnet-core\\MySqlDotnetCore\\obj\\",
+      "projectPath": "C:\\Projects\\mysql-dotnet-core\\MySqlDotnetCore\\MySqlDotnetCore.csproj",
+      "packagesPath": "C:\\Users\\rishi\\.nuget\\packages\\",
+      "outputPath": "C:\\Projects\\mysql-dotnet-core\\MySqlDotnetCore\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\JasonSturges\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\rishi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7085,6 +7080,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[5.0.17, 5.0.17]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -7093,7 +7106,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

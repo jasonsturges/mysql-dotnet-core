@@ -29,7 +29,7 @@ namespace MySqlDotnetCore
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySQL(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("AZURE_MYSQL_CONNECTIONSTRING")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
