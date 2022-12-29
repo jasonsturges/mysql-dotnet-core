@@ -1,8 +1,8 @@
-# MySQL ASP.NET 5.0
+# MySQL ASP.NET 7.0
 
-Convert an [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-5.0) Web Application project to use [MySQL](https://www.mysql.com/) with [Entity Framework](https://docs.microsoft.com/en-us/ef/), enabling development on macOS, linux, or Windows targets using IDEs such as [VS Code](https://code.visualstudio.com/), [Visual Studio](https://visualstudio.microsoft.com/), or [JetBrains Rider](https://www.jetbrains.com/rider/).
+Convert an [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-7.0) Web Application project to use [MySQL](https://www.mysql.com/) with [Entity Framework](https://docs.microsoft.com/en-us/ef/), enabling development on macOS, linux, or Windows targets using IDEs such as [VS Code](https://code.visualstudio.com/), [Visual Studio](https://visualstudio.microsoft.com/), or [JetBrains Rider](https://www.jetbrains.com/rider/).
 
-This project uses [.NET 5.0](https://dotnet.microsoft.com/download/dotnet/5.0) target framework, ASP.NET Core Web Application (Model-View-Controller) project scaffold from Visual Studio 2019 (version 16.10.1) to connect to MySQL 8.0.
+This project uses [.NET 7.0](https://dotnet.microsoft.com/en-us/download/dotnet/7.0) target framework, ASP.NET Core Web Application (Model-View-Controller) project scaffold from Visual Studio 2019 (version 16.10.1) to connect to MySQL 8.0.
 
 ![vscode](https://user-images.githubusercontent.com/1213591/106405974-812cba80-63fd-11eb-9c22-3f8eeff9136f.png)
 
@@ -82,17 +82,13 @@ Or, edit the project's .csproj file and add the following line in the `PackageRe
 
     <PackageReference Include="MySql.EntityFrameworkCore" Version="5.0.3.1" />
 
-### Modify Startup.cs
+### Modify Program.cs
 
-In `Startup.cs` under `ConfigureServices()` method, replace the `UseSqlServer` / `UseSqlite` option with MySQL:
+In `Program.cs` replace the `UseSqlServer` / `UseSqlite` option with MySQL:
 
 ```cs
-// This method gets called by the runtime. Use this method to add services to the container.
-public void ConfigureServices(IServiceCollection services)
-{
-    // Add framework services.
-    services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseMySQL(connectionString));
 ```
 
 ### Migration Issues with DbContext
