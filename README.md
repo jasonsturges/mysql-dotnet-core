@@ -1,5 +1,7 @@
 # MySQL ASP.NET 5.0
 
+_Note: .NET 7 version is in progress on branch [`dotnet-7.0`](https://github.com/jasonsturges/mysql-dotnet-core/tree/dotnet-7.0), pending resolution of issues._
+
 Convert an [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-5.0) Web Application project to use [MySQL](https://www.mysql.com/) with [Entity Framework](https://docs.microsoft.com/en-us/ef/), enabling development on macOS, linux, or Windows targets using IDEs such as [VS Code](https://code.visualstudio.com/), [Visual Studio](https://visualstudio.microsoft.com/), or [JetBrains Rider](https://www.jetbrains.com/rider/).
 
 This project uses [.NET 5.0](https://dotnet.microsoft.com/download/dotnet/5.0) target framework, ASP.NET Core Web Application (Model-View-Controller) project scaffold from Visual Studio 2019 (version 16.10.1) to connect to MySQL 8.0.
