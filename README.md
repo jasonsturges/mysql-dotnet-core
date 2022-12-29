@@ -3,7 +3,7 @@
 - _Note: .NET 7 version is in progress on branch [`dotnet-7.0`](https://github.com/jasonsturges/mysql-dotnet-core/tree/dotnet-7.0), pending resolution of issues._
 - _Note: Microsoft SQL Server (MSSQL) now runs on Mac / Linux via Docker, and may be considered as a viable cross platform solution._
 - _Note: MySQL via Pomelo data adapter is functional, and a viable alternative to Oracle's adapters used here._
-- _Note: PostgreSQL [alternative version](https://github.com/jasonsturges/postgresql-dotnet-core) is also available, with .NET 7 update in progress now._
+- _Note: PostgreSQL [alternative version](https://github.com/jasonsturges/postgresql-dotnet-core) is also available, with .NET 7 update complete._
 
 Convert an [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-5.0) Web Application project to use [MySQL](https://www.mysql.com/) with [Entity Framework](https://docs.microsoft.com/en-us/ef/), enabling development on macOS, linux, or Windows targets using IDEs such as [VS Code](https://code.visualstudio.com/), [Visual Studio](https://visualstudio.microsoft.com/), or [JetBrains Rider](https://www.jetbrains.com/rider/).
 
